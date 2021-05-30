@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="315" height="334.79" viewBox="0 0 315 334.79">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0"/>
+      <stop offset="0.601" stop-color="#363636"/>
+      <stop offset="1" stop-color="#545454"/>
+    </linearGradient>
+    <filter id="Union_4" x="45.126" y="119.68" width="251.594" height="215.11" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.392"/>
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#fff" stop-opacity="0.235"/>
+      <stop offset="0.054" stop-color="#8e8282" stop-opacity="0.302"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.757"/>
+    </linearGradient>
+  </defs>
+  <g id="Logo" transform="translate(-287 -125)">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="157.5" cy="157.5" r="157.5" transform="translate(287 125)" fill="url(#linear-gradient)"/>
+    <g transform="matrix(1, 0, 0, 1, 287, 125)" filter="url(#Union_4)">
+      <path id="Union_4-2" data-name="Union 4" d="M92.16,82.259c-1.433-3.038-2.007-6.389-3.134-10.9A7.369,7.369,0,0,0,88,69.176a90.176,90.176,0,0,1-18.753,12.38C45.266,93.458,19.049,93.768,0,84.342,3.358,63.8,19.019,43.328,43,31.427s50.2-12.211,69.249-2.785c-.015.1-.031.191-.048.288a87.855,87.855,0,0,1,26.067-19.5c23.984-11.9,50.2-12.211,69.249-2.785-3.358,20.544-19.019,41.015-43,52.915A91.832,91.832,0,0,1,144.387,66.8a79.108,79.108,0,0,1-36.281.178c-1.234,3.611.574,9.278.574,9.278l14.234,86.291S93.593,85.3,92.16,82.259Z" transform="matrix(0.98, -0.17, 0.17, 0.98, 45.13, 155.72)" fill="#c4f41f" opacity="0.39"/>
+    </g>
+    <path id="Intersection_17" data-name="Intersection 17" d="M0,60.2C4.062,40.388,19.458,20.92,42.609,9.433,63.983-1.174,87.132-2.574,105.4,3.919c-5.009,20-20.359,39.023-43.06,50.272A89.15,89.15,0,0,1,22.91,63.635,76.072,76.072,0,0,1,0,60.2Z" transform="matrix(0.985, -0.174, 0.174, 0.985, 336.334, 302.307)" fill="#c4f41f" opacity="0.193"/>
+    <ellipse id="Ellipse_64" data-name="Ellipse 64" cx="26.811" cy="47.143" rx="26.811" ry="47.143" transform="translate(373.122 227.567) rotate(-127)" opacity="0.356" fill="url(#linear-gradient-2)"/>
+    <ellipse id="Ellipse_68" data-name="Ellipse 68" cx="17.311" cy="34.035" rx="17.311" ry="34.035" transform="matrix(-0.927, -0.375, 0.375, -0.927, 332.084, 269.673)" opacity="0.269" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>

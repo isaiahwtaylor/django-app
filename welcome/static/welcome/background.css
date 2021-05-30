@@ -1,0 +1,18 @@
+:root {
+    --gradient: linear-gradient(90deg, #ee6352, purple, #ee6352);
+    --gradient-g: linear-gradient(90deg, rgb(110, 117, 124), black, rgb(110, 117, 124));
+    --gradient-g2: linear-gradient(90deg, darkgreen, greenyellow, darkgreen)
+}
+
+
+body {
+    background: black;
+    background-image: var(--gradient);
+    background-size: 400%;
+    animation: bg-animation 20s infinite alternate;
+}
+
+@keyframes bg-animation {
+    0% {background-position: left}
+    100% {background-position: right}
+}

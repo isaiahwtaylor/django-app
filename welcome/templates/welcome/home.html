@@ -1,0 +1,23 @@
+{% extends "welcome/base.html" %}
+{% load static %}
+
+{% block head-content %}
+    <link rel="alt-stylesheet" type="text/css" href="{% static 'welcome/header.css' %}">
+{% endblock head-content %}
+
+{% block body-content %}
+    <video src="https://storage.googleapis.com/file-sorting-data/Anupam/showcase/testdir/stabfinal.mp4"
+           autoplay muted loop class="video-header" poster="{% static 'welcome/poster-header.jpg' %}"></video>
+    <header class="viewport-header">
+        <h1 class="h1-header">
+            Explore
+            <span>Root Tracking</span>
+        </h1>
+    </header>
+{% endblock body-content%}
+
+{% block main-content %}
+    <main>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada feugiat dui non egestas. In egestas sapien ut erat pulvinar, id eleifend lectus interdum. Nulla condimentum nulla at justo sodales efficitur. Fusce ornare ac purus a auctor. Morbi euismod ipsum non eros venenatis rutrum. Morbi congue odio eu finibus porta. Aenean ut maximus ligula. </h2>
+    </main>
+{% endblock main-content%}

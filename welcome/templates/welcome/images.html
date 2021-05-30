@@ -1,0 +1,60 @@
+{% extends "welcome/base.html" %}
+{% block content %}
+    <h1>Images</h1>
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+
+    <label for="myInput"></label>
+    <div style="width: 25vw">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Experiment"
+               style="margin-bottom: 20px" class="form-control">
+    </div>
+
+    <div class="row">
+        {% for url in image_urls %}
+            <div class="col-6 col-md-2 col-sm-3 col-lg-2 col-xl-2 seed" style="margin-bottom: 10px">
+                <a id="seed-link" href="#!" style="text-decoration: none; color: inherit" onclick="sethref(this)">
+                    <div class="card h-100 text-center border-0">
+                        <div style="display: inline-block; overflow: hidden; background: rgba(0, 0, 0, 0.75)">
+                            <img src="{{url.url}}" class="card-img-top seed_image" alt="sample image" width="250px">
+                        </div>
+                        <div class="card-footer">{{url.box_num}}.{{url.seed_num}}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function myFunction() {
+            let input = document.getElementById('myInput')
+            input = input.value
+            console.log(document.getElementsByClassName('seed'))
+            let x = document.getElementsByClassName('seed')
+            let i;
+
+            for (i = 0; i < x.length; i++) {
+              console.log(x[i].innerText);
+              let txtValue = x[i].innerText;
+              if (txtValue.indexOf(input) > -1){
+                  console.log(x[i].classList)
+                  x[i].classList.remove('d-none');
+                  console.log(x[i].classList)
+
+              } else {
+                  console.log(x[i].classList)
+                  x[i].classList.add('d-none');
+                  console.log(x[i].classList)
+              }
+            }
+        }
+    </script>
+    <script>
+        function sethref(doc){
+            doc.href = "?exp=" + doc.getElementsByClassName('card-footer')[0].innerText
+        }
+    </script>
+    <script>
+        lazyload();
+    </script>
+
+{% endblock content %}

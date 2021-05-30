@@ -1,0 +1,106 @@
+{% extends "welcome/base.html" %}
+{% load static %}
+{% block head-content %}
+<!--    <link rel="stylesheet" href="{% static 'welcome/background.css' %}">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock head-content %}
+
+
+{% block content %}
+
+<!--    <h1>{{seed.qr_number}}.{{seed.seed_number}}</h1>-->
+<!--    <img src="https://storage.googleapis.com/root-tracking-public/showcase/2460/2460_tiptrace_seed1.mp4">-->
+    <div class="row" style="margin-bottom: 45px; margin-top: 45px">
+        <div class="col-6">
+            <img class="rounded" src="https://storage.googleapis.com/root-tracking-public/showcase/{{seed.qr_number}}/final_frame_seed{{seed.seed_number}}.png" height="800px" style="max-width: 300px">
+        </div>
+        <div class="col-6">
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                <h5 class="card-title">{{seed.qr_number}}.{{seed.seed_number}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Date Planted</div>
+                            <div class="col-6"><strong>{{exp.date_planted}}</strong></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Date Moved</div>
+                            <div class="col-6"><strong>{{exp.date_moved}}</strong></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Robot</div>
+                            <div class="col-6"><strong>{{exp.robot}}</strong></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Stock Number</div>
+                            <div class="col-6"><strong>{{exp.stock_number}}</strong></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                <h5 class="card-title">{{exp.description}}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Cultivar</div>
+                            <div class="col-6"><strong>{{exp.cultivar}}</strong></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Genotype</div>
+                            <div class="col-6"><strong>{{exp.genotype}}</strong></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card shadow p-3 mb-5 bg-body rounded">
+                <div class="card-body">
+                <h5 class="card-title">Conditions</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4" style=": center">Temperature</div>
+                            <div class="col-6"><strong>{{exp.temperature}} &deg; C</strong></div>
+                            <div class="col-2"><i class="bi bi-thermometer" style="font-size: 1.2rem"></i></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Gel Concentration</div>
+                            <div class="col-6"><strong>{{exp.gel}}%</strong></div>
+                            <div class="col-2"><i class="bi bi-droplet" style="font-size: 1.2rem"></i></div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-4">Illuminance</div>
+                            {% if exp.lux == "" %}
+                                <div class="col-6"><strong>{{exp.notes}}</strong></div>
+                            {% else %}
+                                <div class="col-6"><strong>{{exp.lux}} lux</strong></div>
+                            {% endif %}
+                            <div class="col-2"><i class="bi bi-lightbulb" style="font-size: 1.2rem"></i></div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock content %}
