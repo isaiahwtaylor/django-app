@@ -34,7 +34,7 @@ class Firestore:
     def query(self, collection, key, value):
         return self.db.collection(collection).where(key, "==", value).stream()
 
-class Bucket:
-
-    def __init__(self):
-        pass
+# class Bucket:
+#
+#     def __init__(self):
+#         pass

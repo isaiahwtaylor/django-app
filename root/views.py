@@ -67,9 +67,7 @@ def home(request):
 
 def images(request):
 
-    if request.GET.get('page') == 'Login':
-        return HttpResponse('<h1>Login Page</h1>')
-    elif request.GET.get('exp') is not None:
+    if request.GET.get('exp') is not None:
         print(request.GET.get('exp'))
         exp = request.GET.get('exp')
         qr_num = exp.split('.')[0]
@@ -94,8 +92,8 @@ def images(request):
 
     return render(request, 'root/images.html', context)
 
-def dashboard(request):
-    return HttpResponse('<h1>Dashboard Page</h1>')
+# def dashboard(request):
+#     return HttpResponse('<h1>Dashboard Page</h1>')
 
 def internal(request):
     return render(request, 'root/internal.html')
