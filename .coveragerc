@@ -1,0 +1,11 @@
+[report]
+fail_under = 90
+show_missing = True
+skip_covered = True
+[run]
+source = .
+omit =
+    main.py
+    manage.py
+    django_app/asgi.py
+    django_app/wsgi.py
