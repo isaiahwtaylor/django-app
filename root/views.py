@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from welcome.utils import Firestore
+from root.utils import Firestore
 from google.cloud import storage
 import os
 
@@ -63,7 +63,7 @@ for prefix in prefixes:
 
 
 def home(request):
-    return render(request, 'welcome/home.html')
+    return render(request, 'root/home.html')
 
 def images(request):
 
@@ -88,17 +88,17 @@ def images(request):
 
         context = {'exp': doc, 'seed': seed_context}
 
-        return render(request, 'welcome/image-details.html', context)
+        return render(request, 'root/image-details.html', context)
 
     context = {'posts': docs, 'image_urls': image_urls}
 
-    return render(request, 'welcome/images.html', context)
+    return render(request, 'root/images.html', context)
 
 def dashboard(request):
     return HttpResponse('<h1>Dashboard Page</h1>')
 
 def internal(request):
-    return render(request, 'welcome/internal.html')
+    return render(request, 'root/internal.html')
 
 
 

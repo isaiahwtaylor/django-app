@@ -1,13 +1,13 @@
-{% extends "welcome/base.html" %}
+{% extends "root/base.html" %}
 {% load static %}
 
 {% block head-content %}
-    <link rel="alt-stylesheet" type="text/css" href="{% static 'welcome/header.css' %}">
+    <link rel="alt-stylesheet" type="text/css" href="{% static 'root/header.css' %}">
 {% endblock head-content %}
 
 {% block body-content %}
     <video src="https://storage.googleapis.com/file-sorting-data/Anupam/showcase/testdir/stabfinal.mp4"
-           autoplay muted loop class="video-header" poster="{% static 'welcome/poster-header.jpg' %}"></video>
+           autoplay muted loop class="video-header" poster="{% static 'root/poster-header.jpg' %}"></video>
     <header class="viewport-header">
         <h1 class="h1-header">
             Explore

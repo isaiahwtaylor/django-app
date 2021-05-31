@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['file-sorting-root-tracking.uc.r.appspot.com', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'welcome.apps.WelcomeConfig',
+    'root.apps.RootConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
