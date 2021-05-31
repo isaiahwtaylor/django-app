@@ -1,6 +1,8 @@
 # django-app
 
 [![codecov](https://codecov.io/gh/aaronBioBot/django-app/branch/main/graph/badge.svg?token=NFMKNPAS0N)](https://codecov.io/gh/aaronBioBot/django-app)
+![django-test workflow](https://github.com/aaronBioBot/django-app/actions/workflows/django-test.yml/badge.svg)
+![django-deploy workflow](https://github.com/aaronBioBot/django-app/actions/workflows/django-deploy.yml/badge.svg)
 
 ###  https://file-sorting-root-tracking.uc.r.appspot.com/
 
