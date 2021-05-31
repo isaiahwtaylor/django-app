@@ -6,10 +6,11 @@ from firebase_admin import firestore
 class Firestore:
 
     def __init__(self, project_id : str):
-        cred = credentials.ApplicationDefault()
-        firebase_admin.initialize_app(cred, {
-            'projectId': project_id,
-        })
+        if len(firebase_admin._apps) < 1:
+            cred = credentials.ApplicationDefault()
+            firebase_admin.initialize_app(cred, {
+                'projectId': project_id,
+            })
 
         self.db = firestore.client()
 
@@ -24,6 +25,7 @@ class Firestore:
             return doc.to_dict()
         else:
             print("document not found")
+            return None
 
     def update(self, collection, doc, data):
         doc_ref = self.db.collection(collection).document(doc)
