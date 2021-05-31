@@ -2,3 +2,5 @@
 /static
 db.sqlite3
 .env
+.coverage
+/htmlcov
