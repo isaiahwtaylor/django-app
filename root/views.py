@@ -100,5 +100,6 @@ def dashboard(request):
 def internal(request):
     return render(request, 'root/internal.html')
 
-
+def blog(request):
+    return render(request, 'root/blog.html')
 
