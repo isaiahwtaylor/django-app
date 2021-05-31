@@ -23,9 +23,12 @@ Website to view root image analysis, powered by django.
 
 ```$ gcloud app deploy```
 
-### Testing
+### Run Locally
 
 ```$ python manage.py runserver```
 
 ```localhost:8000```
 
+### Unit Testing
+
+```$ python manage.py test```
