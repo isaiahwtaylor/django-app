@@ -13,13 +13,14 @@
 
     <link rel="shortcut icon" href="{% static 'root/favicon.ico' %}">
     {% block head-content%} {% endblock %}
-    <title>Root-Tracking</title>
+    <title>Root Tracking</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<!--        bg-dark-->
         <div class="container">
           <a class="navbar-brand" href="#">
-              <img src="{% static 'root/logo.svg' %}" alt="logo" height="60px" style="margin-right: 1rem;">Root-Tracking
+              <img src="{% static 'root/logo.svg' %}" alt="logo" height="45px" style="margin-right: 1rem;">Root Tracking
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +31,7 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/images">Images</a>
+                    <a class="nav-link" href="/images">Gallery</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Blog</a>
@@ -51,7 +52,7 @@
 
     {% block body-content%} {% endblock %}
 
-    <div class="container">
+    <div class="container" id="content-container">
         {% block content %} {% endblock %}
     </div>
 
@@ -65,7 +66,7 @@
 <footer class="footer">
     <div class="container" style="text-align: center">
         <br>
-        <span class="text-muted" style="display: block; margin-bottom: 10px; align-content: center">2021 Root-Tracking</span>
+        <span class="text-muted" style="display: block; margin-bottom: 10px; align-content: center">2021 Root Tracking</span>
         <a class="text-muted" href="https://github.com/aaronBioBot"><strong>Privacy Policy</strong></a>
         <span class="text-muted" style="margin-right: 10px; margin-left: 10px">&bull;</span>
         <a class="text-muted" href="https://github.com/aaronBioBot"><strong>Contact</strong> </a>
