@@ -1,8 +1,8 @@
 {% extends "root/base.html" %}
 {% block content %}
-    <h1>Images</h1>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+    <h3 style="margin-top: 20px">Browse Experiments</h3>
     <label for="myInput"></label>
     <div style="width: 25vw">
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Experiment"
@@ -23,34 +23,56 @@
             </div>
         {% endfor %}
     </div>
+    <figure class="text-center d-none none-found">
+        <h6>No Experiments Found!</h6>
+    </figure>
+
 
     <script>
         function myFunction() {
             let input = document.getElementById('myInput')
             input = input.value
-            console.log(document.getElementsByClassName('seed'))
-            let x = document.getElementsByClassName('seed')
-            let i;
 
-            for (i = 0; i < x.length; i++) {
-              console.log(x[i].innerText);
+            if (inputMatchesFound(input)) {
+                document.getElementsByClassName('none-found')[0].classList.add('d-none')
+                // document.getElementsByClassName('footer')[0].style.position='relative'
+            } else {
+                document.getElementsByClassName('none-found')[0].classList.remove('d-none')
+                // document.getElementsByClassName('footer')[0].style.position='absolute'
+            }
+            let x = document.getElementsByClassName('seed')
+            for (let i = 0; i < x.length; i++) {
               let txtValue = x[i].innerText;
               if (txtValue.indexOf(input) > -1){
-                  console.log(x[i].classList)
                   x[i].classList.remove('d-none');
-                  console.log(x[i].classList)
-
               } else {
-                  console.log(x[i].classList)
                   x[i].classList.add('d-none');
-                  console.log(x[i].classList)
               }
             }
+            if (isContentFilled()){
+                document.getElementsByClassName('footer')[0].style.position='relative'
+            } else {
+                document.getElementsByClassName('footer')[0].style.position='absolute'
+            }
         }
-    </script>
-    <script>
+        function inputMatchesFound(input){
+            let x = document.getElementsByClassName('seed')
+            for (let i = 0; i < x.length; i++) {
+              let txtValue = x[i].innerText;
+              if (txtValue.indexOf(input) > -1){
+                  return true
+              }
+            }
+            return false
+        }
         function sethref(doc){
             doc.href = "?exp=" + doc.getElementsByClassName('card-footer')[0].innerText
+        }
+        function isContentFilled(){
+            let bodyHeight = document.body.scrollHeight
+            let contentHeight = document.getElementsByClassName('footer')[0].scrollHeight +
+                document.getElementsByClassName('navbar')[0].scrollHeight + document.getElementById('content-container').scrollHeight + 20
+            return bodyHeight <= contentHeight;
         }
     </script>
     <script>
