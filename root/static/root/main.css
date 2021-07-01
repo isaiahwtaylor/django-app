@@ -66,9 +66,9 @@ html {
 h2 {
     font-family: 'Syncopate', sans-serif;
     color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5vw;
-    line-height: 1.2;
+    /*text-transform: uppercase;*/
+    /*letter-spacing: 0.1vw;*/
+    line-height: 1.35;
     font-size: 2vw;
     text-align: center;
 
