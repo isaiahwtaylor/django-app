@@ -15,6 +15,7 @@ jobs:
           version: '290.0.1'
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
+          credentials_file_path: './gcp.json'
 
       - name: Set gcloud project
         run: gcloud config set project file-sorting-root-tracking
