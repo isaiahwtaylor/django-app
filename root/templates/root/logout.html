@@ -1,0 +1,12 @@
+{% extends "root/base.html" %}
+{% load static %}
+
+{% block head-content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'root/footer.css' %}">
+{% endblock head-content %}
+
+{% block content %}
+    <h3 style="margin-top: 20px">Logout Page</h3>
+    <p>You have been successfully logged out.</p>
+    <a href="/login">login</a>
+{% endblock content %}

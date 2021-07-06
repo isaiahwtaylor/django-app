@@ -1,0 +1,39 @@
+{% extends "root/base.html" %}
+{% load static %}
+
+{% block head-content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'root/footer.css' %}">
+{% endblock head-content %}
+
+{% block content %}
+    <div style="margin-top: 20px">
+        <h3>Login Page</h3>
+
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+            {% else %}
+                <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+
+        <form class="form-horizontal form" name="LoginForm"  method="post">
+            {% csrf_token %}
+            <div class="mb-3 mt-4" style="max-width: 250px">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+            </div>
+            <div class="mb-3" style="max-width: 250px">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+{% endblock content %}
