@@ -33,9 +33,6 @@ jobs:
       - name: Decode DJANGO_KEY
         run:  echo ${{secrets.DJANGO_KEY}} > ./.env
 
-      - name: Decode GCP_SA_KEY
-        run: echo '${{secrets.GCP_SA_KEY}}' > ./gcp.json
-
       - name: Move static files
         run: python manage.py collectstatic
 
