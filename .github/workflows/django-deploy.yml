@@ -33,6 +33,9 @@ jobs:
       - name: Decode DJANGO_KEY
         run:  echo ${{secrets.DJANGO_KEY}} > ./.env
 
+      - name: Decode CLOUD_SQL_KEY
+        run: echo ${{secrets.CLOUD_SQL_KEY}} >> ./env
+
       - name: Move static files
         run: python manage.py collectstatic
 
