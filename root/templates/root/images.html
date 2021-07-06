@@ -1,42 +1,23 @@
 {% extends "root/base.html" %}
+
 {% block head-content %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css">
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">-->
-
 {% endblock head-content %}
-
-{% block body-content %}
-<!--    <div class="triangle-background"></div>-->
-<!--    <div class="triangle-background-flip"></div>-->
-<!--    <div class="triangle-background-flip-vertical"></div>-->
-<!--    <div class="triangle-background-flip" style="margin-top: 75px; margin-left: -325px"></div>-->
-{% endblock body-content %}
 
 
 {% block content %}
 
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Include jQuery -->
-<!--    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
-
-    <!-- Include Date Range Picker -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>-->
-
-
 
     <h3 style="margin-top: 20px; padding-bottom: 15px">Browse Experiments</h3>
 
     <div class="row">
         <div class="col-3">
             <div class="form-floating" style="margin-top: 20px; padding-bottom: 50px">
-                <input type="text" id="searchExp" onkeyup="myFunction()" placeholder="Search Experiment" class="form-control">
-                <label for="searchExp">Search Experiment</label>
+                <input type="text" id="searchExp" onkeyup="myFunction(document.getElementById('searchExp').value)" placeholder="Search Experiment" class="form-control">
+                <label for="searchExp">Search Experiment ID</label>
             </div>
         </div>
         <div class="col-6 col-md-3 col-sm-6" style="max-height: 100px">
@@ -44,23 +25,23 @@
                 <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0">
                     <i class="bi bi-calendar3"></i>
                 </span>
-                <div class="form-floating input-group-date" style="flex: auto;">
-                    <input type="text" id="searchDate" placeholder="Date Planted" class="form-control input-date" name="date" style="border-bottom-left-radius: 0; border-top-left-radius: 0; border-left: none">
-                    <label for="searchDate">Date Planted</label>
-                </div>
+                <form class="form-floating input-group-date" style="flex: auto;" method="get" id="formSearchDate" action="/images">
+                    <input type="text" id="searchDate" placeholder="Date Planted" class="form-control input-date" name="date" style="border-radius: 0; border-left: none" required>
+                    <label for="searchDate">Date Planted by at Least</label>
+                </form>
+                <button type="submit" form="formSearchDate" class="btn btn-outline-success">
+                    <i class="bi bi-search"></i>
+                </button>
             </div>
         </div>
     </div>
 
-
-
     <script>
-        // jquery
         $(document).ready(function(){
             const date_input = $('input[name="date"]');
             const container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
-            format: 'mm/dd/yyyy',
+            format: 'mm-dd-yyyy',
             container: container,
             todayHighlight: true,
             autoclose: true,
@@ -74,7 +55,7 @@
                 <a id="seed-link" href="#!" style="text-decoration: none; color: inherit" onclick="sethref(this)">
                     <div class="card h-100 text-center border-0">
                         <div style="display: inline-block; overflow: hidden; background: rgba(0, 0, 0, 0.75)">
-                            <img src="{{url.url}}" class="card-img-top seed_image" alt="sample image" width="250px">
+                            <img src="{{url.url}}" class="card-img-top seed_image" alt="sample image" width="250px", loading="lazy">
                         </div>
                         <div class="card-footer">{{url.box_num}}.{{url.seed_num}}</div>
                     </div>
@@ -87,17 +68,15 @@
     </figure>
 
 
-    <script>
-        function myFunction() {
-            let input = document.getElementById('searchExp')
-            input = input.value
 
+    <script>
+        function myFunction(val) {
+            let input = val
+            console.log(input)
             if (inputMatchesFound(input)) {
                 document.getElementsByClassName('none-found')[0].classList.add('d-none')
-                // document.getElementsByClassName('footer')[0].style.position='relative'
             } else {
                 document.getElementsByClassName('none-found')[0].classList.remove('d-none')
-                // document.getElementsByClassName('footer')[0].style.position='absolute'
             }
             let x = document.getElementsByClassName('seed')
             for (let i = 0; i < x.length; i++) {
@@ -134,8 +113,14 @@
             return bodyHeight <= contentHeight;
         }
     </script>
-    <script>
-        lazyload();
-    </script>
+
+    {% if image_urls|length_is:"0" %}
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                myFunction("?")
+            });
+        </script>
+    {% endif %}
 
 {% endblock content %}
+
