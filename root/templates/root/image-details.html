@@ -1,15 +1,13 @@
 {% extends "root/base.html" %}
 {% load static %}
+
 {% block head-content %}
-<!--    <link rel="stylesheet" href="{% static 'root/background.css' %}">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 {% endblock head-content %}
 
 
 {% block content %}
 
-<!--    <h1>{{seed.qr_number}}.{{seed.seed_number}}</h1>-->
-<!--    <img src="https://storage.googleapis.com/root-tracking-public/showcase/2460/2460_tiptrace_seed1.mp4">-->
     <div class="row" style="margin-bottom: 45px; margin-top: 45px">
         <div class="col-6">
             <img class="rounded" src="https://storage.googleapis.com/root-tracking-public/showcase/{{seed.qr_number}}/final_frame_seed{{seed.seed_number}}.png" height="800px" style="max-width: 300px">
@@ -93,14 +91,11 @@
                                 <div class="col-6"><strong>{{exp.lux}} lux</strong></div>
                             {% endif %}
                             <div class="col-2"><i class="bi bi-lightbulb" style="font-size: 1.2rem"></i></div>
-
                         </div>
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
-
 
 {% endblock content %}
