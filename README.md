@@ -16,6 +16,7 @@ Website to view root image analysis, powered by django.
 * Storage 
     * Cloud Storage Buckets
     * Firestore
+    * Cloud SQL
 
 ### Deployment
 
