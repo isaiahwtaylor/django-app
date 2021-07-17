@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 from root.utils import Firestore, Bucket, ImageContext, Cache
 import os
+import json
 
 from urllib import parse
 import dateutil.parser
@@ -80,7 +82,18 @@ def images(request):
 
 def internal(request):
     if request.user.is_superuser:
-        return render(request, 'root/internal.html')
+        if request.method == 'POST':
+            data = json.loads(request.body.decode('utf-8'))
+            doc = db.get('root', data.get('box_num'))
+            seeds = doc.get('seeds')
+            for seed in seeds:
+                if seed.get('seed_number') == int(data.get('seed_num')):
+                    return JsonResponse({'tip_coords': seed.get('tip_coords')})
+
+            return JsonResponse({'tip_coords': None})
+
+        context = {'image_urls': get_image_urls()}
+        return render(request, 'root/internal.html', context)
     else:
         return redirect('/login')
 

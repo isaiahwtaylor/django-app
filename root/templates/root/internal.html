@@ -2,11 +2,98 @@
 {% load static %}
 
 {% block head-content %}
-    <link rel="stylesheet" type="text/css" href="{% static 'root/footer.css' %}">
+    <!--    <link rel="stylesheet" type="text/css" href="{% static 'root/footer.css' %}">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 {% endblock head-content %}
 
 {% block content %}
     <h3 style="margin-top: 20px">Internal Page</h3>
     <p>Welcome, {{user.username}}</p>
     <a href="/logout">logout</a>
+
+    <br><br>
+    <p style="display: inline-block; margin-right: 10px">Quick Links</p><i class="bi bi-download" aria-hidden="true"></i>
+    <br>
+    <button onclick="download()" class="btn btn-outline-primary">Download Image</button>
+    <br><br>
+    <button onclick="downloadTipCoords()" class="btn btn-outline-primary">Download Json Tip Coordinates</button>
+
+    <br><br>
+
+    <p style="display: inline-block; margin-right: 10px">Download Tip Coordinates</p><i class="bi bi-download" aria-hidden="true"></i>
+
+    <table style="width:50%">
+        <tr>
+            <th>Tip Coordinates</th>
+            <th>Video</th>
+        </tr>
+        {% for url in image_urls %}
+            <tr>
+                <td><a href="#!" onclick="downloadTipCoords(`{{ url.box_num }}`, `{{ url.seed_num }}`)">{{url.box_num}}.{{url.seed_num}}</a></td>
+                <td><a href="#!" onclick="downloadMp4(`{{ url.box_num }}`, 0, this.parentElement)">{{url.box_num}}.{{url.seed_num}} outfile</a><div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+    <script>
+        function download() {
+            axios({
+                url: 'https://storage.googleapis.com/root-tracking-public/showcase/2460/hist.png',
+                method: 'GET',
+                responseType: 'blob'
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'image.png');
+                document.body.appendChild(link);
+                link.click();
+            });
+        }
+        function downloadTipCoords(box_num, seed_num) {
+            axios({
+                url: '/internal/',
+                method: 'POST',
+                responseType: 'json',
+                headers: {'X-CSRFToken': '{{csrf_token}}'},
+                data: {'box_num': String(box_num), 'seed_num': String(seed_num)}
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([JSON.stringify(response.data)], {type: "application/json"}));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'image.json');
+                document.body.appendChild(link);
+                link.click();
+            });
+        }
+        function downloadMp4(box_num, seed_num, doc) {
+            axios({
+                url: `https://storage.googleapis.com/root-tracking-public/showcase/${box_num}/stabilize.mp4/outfile.mp4`,
+                method: 'GET',
+                responseType: 'blob',
+                headers: {'Content-Disposition': 'attachment'},
+                onDownloadProgress: (progressEvent) => {
+                    let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    doc.getElementsByClassName('progress-bar')[0].setAttribute('aria-valuenow', String(percentCompleted))
+                    doc.getElementsByClassName('progress-bar')[0].setAttribute('style','width:'+Number(percentCompleted)+'%')
+                }
+
+            }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'vid.mp4');
+                document.body.appendChild(link);
+                link.click();
+            });
+        }
+    </script>
+
+
 {% endblock content %}
