@@ -33,3 +33,6 @@ Website to view root image analysis, powered by django.
 ### Unit Testing
 
 ```$ python manage.py test```
+
+[//]: <> (Placeholder Comment for Pull Request)
+
