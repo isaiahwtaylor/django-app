@@ -5,3 +5,5 @@ db.sqlite3
 .coverage
 /htmlcov
 gcp.json
+/node_modules
+package-lock.json
