@@ -99,7 +99,30 @@ def internal(request):
 
 
 def blog(request):
-    return render(request, 'root/blog.html')
+    # Open a file: file
+    # file = open('/root/templates/root/blogs/in.md', mode='r')
+    #
+    # # read all lines at once
+    # all_of_it = file.read()
+    # print(all_of_it)
+
+    # with open('/root/templates/root/blog.html') as f:
+    #     result = f.read()
+    #     print(result)
+    # close the file
+    # file.close()
+    if request.GET.get('name') is not None:
+        name = request.GET.get('name')
+        return render(request, f'root/blogs/html-gen/{name}.html')
+    blog_names = []
+
+    print(os.listdir('root/templates/root/blogs'))
+    for f in os.listdir('root/templates/root/blogs/html-gen'):
+        if f.endswith('.html'):
+            print(os.path.splitext(f)[0])
+            blog_names.append(os.path.splitext(f)[0])
+    context = {'blog_names': blog_names}
+    return render(request, 'root/blog.html', context)
 
 
 def get_image_urls():

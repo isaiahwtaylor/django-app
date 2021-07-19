@@ -9,4 +9,20 @@
     <figure class="text-center">
         <span>Coming Soon!</span>
     </figure>
+    <div id="blog-container"></div>
+
+<!--    <ul style="list-style-type:none;">-->
+    <ul class="list-group list-group-flush">
+    {% for name in blog_names %}
+      <li class="list-group-item"><h5><a href="/blog?name={{name}}" class="link-dark">{{name}}</a></h5></li>
+    {% endfor %}
+    </ul>
+<!--    <ul class="list-group list-group-flush">-->
+<!--      <li class="list-group-item">An item</li>-->
+<!--      <li class="list-group-item">A second item</li>-->
+<!--      <li class="list-group-item">A third item</li>-->
+<!--      <li class="list-group-item">A fourth item</li>-->
+<!--      <li class="list-group-item">And a fifth one</li>-->
+<!--    </ul>-->
+
 {% endblock content %}
