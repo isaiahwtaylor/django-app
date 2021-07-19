@@ -33,3 +33,9 @@ Website to view root image analysis, powered by django.
 ### Unit Testing
 
 ```$ python manage.py test```
+
+### Content
+
+* Blog
+  * Edit Pages in Markdown and upload to ```/templates/root/blogs/md```
+  * Run node script ```node app.js``` to convert markdown to html
