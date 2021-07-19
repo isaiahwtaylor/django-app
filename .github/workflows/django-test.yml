@@ -35,7 +35,7 @@ jobs:
         run:  echo ${{secrets.DJANGO_KEY}} > ./.env
 
       - name: Decode CLOUD_SQL_KEY
-        run: echo '${{secrets.CLOUD_SQL_KEY}}' >> ./env
+        run: printf "${{secrets.CLOUD_SQL_KEY}}" >> ./env
 
       - name: Run django test
         run:  python manage.py test
