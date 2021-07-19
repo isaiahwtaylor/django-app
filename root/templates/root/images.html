@@ -55,7 +55,7 @@
                 <a id="seed-link" href="#!" style="text-decoration: none; color: inherit" onclick="sethref(this)">
                     <div class="card h-100 text-center border-0">
                         <div style="display: inline-block; overflow: hidden; background: rgba(0, 0, 0, 0.75)">
-                            <img src="{{url.url}}" class="card-img-top seed_image" alt="sample image" width="250px", loading="lazy">
+                            <img src="{{url.url}}" class="card-img-top seed_image" alt="sample image" width="250px">
                         </div>
                         <div class="card-footer">{{url.box_num}}.{{url.seed_num}}</div>
                     </div>
@@ -102,15 +102,6 @@
               }
             }
             return false
-        }
-        function sethref(doc){
-            doc.href = "?exp=" + doc.getElementsByClassName('card-footer')[0].innerText
-        }
-        function isContentFilled(){
-            let bodyHeight = document.body.scrollHeight
-            let contentHeight = document.getElementsByClassName('footer')[0].scrollHeight +
-                document.getElementsByClassName('navbar')[0].scrollHeight + document.getElementById('content-container').scrollHeight + 20
-            return bodyHeight <= contentHeight;
         }
     </script>
 
