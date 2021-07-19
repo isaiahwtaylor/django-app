@@ -28,7 +28,7 @@ Website to view root image analysis, powered by django.
 
 ```$ python manage.py runserver```
 
-```localhost:8000```
+Go to ```localhost:8000```
 
 ### Unit Testing
 
@@ -38,4 +38,4 @@ Website to view root image analysis, powered by django.
 
 * Blog
   * Edit Pages in Markdown and upload to ```/templates/root/blogs/md```
-  * Run node script ```node app.js``` to convert markdown to html
+  * Run node script ```$ node app.js``` to convert markdown to html
