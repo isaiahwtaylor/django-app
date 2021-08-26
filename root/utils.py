@@ -15,7 +15,7 @@ from django.utils import timezone
 
 class Firestore:
 
-    def __init__(self, project_id : str):
+    def __init__(self, project_id: str):
         if len(firebase_admin._apps) < 1:
             cred = credentials.ApplicationDefault()
             firebase_admin.initialize_app(cred, {
@@ -44,6 +44,7 @@ class Firestore:
     def query(self, collection, key, value, comparator):
         return self.db.collection(collection).where(key, comparator, value).stream()
 
+
 class Bucket:
 
     def __init__(self, bucket_name):
@@ -70,7 +71,6 @@ class Bucket:
             method="GET",
         )
         return url
-
 
 
 class ImageContext:
@@ -116,18 +116,27 @@ class ImageContext:
     def to_dict(self) -> dict:
         return {'url': self.url, 'box_num': self.box_num, 'seed_num': self.seed_num}
 
+
 class Cache:
     """
         A dictionary implementation to cache signed_urls of ImageContext data
     """
 
     # class attributes
-    bucket = Bucket('file-sorting-data')
-    bucket_path = 'Anupam/showcase/showcase/{}/hist.png'
+    # bucket = Bucket('file-sorting-data')
+    # bucket_path = 'Anupam/showcase/showcase/{}/hist.png'
 
-    def __init__(self):
+    def __init__(self, bucket_name: str = None, bucket_path: str = None):
         # instance attributes
         self.signed_urls = {}
+        if bucket_name is None:
+            self.bucket = Bucket('file-sorting-data')
+        else:
+            self.bucket = Bucket(bucket_name)
+        if bucket_path is None:
+            self.bucket_path = 'Anupam/showcase/showcase/{}/hist.png'
+        else:
+            self.bucket_path = bucket_path
 
     def get(self, box_num, seed_num) -> ImageContext:
         return self.signed_urls.get(ImageContext.as_exp_id(box_num, seed_num))
