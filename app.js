@@ -30,7 +30,7 @@ for (let fileName of fileNames) {
       let root = parse(html);
       root.querySelector('#blog-container').set_content(markhtml)
       let output = pretty(root.toString())
-      fs.writeFileSync(`root/templates/root/blogs/html-gen/blog-${fileName}.html`, output)
+      fs.writeFileSync(`root/templates/root/blogs/html-gen/${fileName}.html`, output)
     });
 }
 
