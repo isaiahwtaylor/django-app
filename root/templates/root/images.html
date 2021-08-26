@@ -25,7 +25,7 @@
                 <span class="input-group-text" style="border-top-right-radius: 0; border-bottom-right-radius: 0">
                     <i class="bi bi-calendar3"></i>
                 </span>
-                <form class="form-floating input-group-date" style="flex: auto;" method="get" id="formSearchDate" action="/images">
+                <form class="form-floating input-group-date" style="flex: auto;" method="get" id="formSearchDate" action="/gallery">
                     <input type="text" id="searchDate" placeholder="Date Planted" class="form-control input-date" name="date" style="border-radius: 0; border-left: none" required>
                     <label for="searchDate">Date Planted by at Least</label>
                 </form>
@@ -41,12 +41,12 @@
             const date_input = $('input[name="date"]');
             const container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
             date_input.datepicker({
-            format: 'mm-dd-yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
+                format: 'mm-dd-yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
         })
-    })
     </script>
 
     <div class="row">
@@ -107,9 +107,7 @@
 
     {% if image_urls|length_is:"0" %}
         <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                myFunction("?")
-            });
+            document.getElementsByClassName('none-found')[0].classList.remove('d-none')
         </script>
     {% endif %}
 
