@@ -1,0 +1,23 @@
+{% extends "root/base.html" %}
+
+{% block content %}
+<div class="card" style="width: 75%; margin: 50px auto;">
+  <div class="card-body" id="blog-container">
+    <h1 id="first-post">First Post</h1>
+    <h3 id="friday-august-13th">Friday, August 13th</h3>
+    <h3 id="aaronbiobot">@aaronBioBot</h3>
+    <p>Welcome! Feel free to explore the website.</p>
+    <p>Page Directory</p>
+    <ul>
+      <li>/ <a href="/">home</a>
+        <ul>
+          <li><a href="/gallery">gallery</a></li>
+          <li><a href="/blog">blog</a></li>
+          <li><a href="/internal">internal</a></li>
+          <li><a href="/about">about</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock content %}
