@@ -1,0 +1,201 @@
+{% extends "root/base.html" %}
+{% load static %}
+
+{% block head-content %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock head-content %}
+
+{% block body-content %}
+    <div class="video-header" style="background-color: black"></div>
+    <header class="viewport-header">
+      <h1 class="h1-header">
+            <div class="about-title">
+                <span>About</span>
+            </div>
+            <span>
+                <div class="bounce">
+                    <i class="bi bi-arrow-down-short"></i>
+                </div>
+            </span>
+      </h1>
+    </header>
+{% endblock body-content %}
+
+{% block content %}
+    <div class="about-videos">
+        <div class="row">
+            <div class="col col-md-auto">
+                <div class="about-video">
+                    <video src="https://storage.googleapis.com/root-tracking-public/about-videos/robot_1.mp4"
+                       autoplay muted loop poster controls="{% static 'root/poster-header.jpg' %}">
+                    </video>
+                </div>
+            </div>
+            <div class="col fade" style="padding: 50px">
+                <div class="card about-card h-100">
+                  <div class="card-body">
+                      <h4>Imaging system</h4>
+                      <p>We use a custom imaging robot to obtain the time-lapse images of the individual experiments.
+                          This is a simple but effective build.
+
+                          Two stepper motors control the x and y axes of motion. A camera mount takes pictures of each experiment as the robot moves across the shelf.
+
+                          Each transparent container holds one experiment of a certain rice variety. The containers are identified through a QR code label.
+
+                          Typically, one batch of experiments will stay on the shelf for 2-3 weeks. The robot will then upload the images for processing.
+                      </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 50px">
+            <div class="col fade" style="padding: 50px">
+                <div class="card about-card h-100">
+                  <div class="card-body">
+                      <h4>Side by side observation</h4>
+                      <p>Here is a close look at two time-lapse videos that have been spliced together.
+
+                          S1 rice seed type (left) vs S1 mutant type (right)
+                      </p>
+                  </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="about-video">
+                    <video src="https://storage.googleapis.com/root-tracking-public/about-videos/S1.mp4"
+                       autoplay muted loop poster controls="{% static 'root/poster-header.jpg' %}" style="max-width: 500px">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 50px">
+            <div class="col fade" style="padding: 50px">
+                <div class="card about-card h-100">
+                  <div class="card-body">
+                      <h4>Changing the growth environment</h4>
+                      <p>Changing the substrate yields interesting results.
+
+                          Here are rice seeds growing in gravel.
+
+                          The gel concentration of the primary transparent substrate can also be tuned.
+                      </p>
+                  </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="about-video">
+                    <video src="https://storage.googleapis.com/root-tracking-public/about-videos/S9_gravel.mp4"
+                       autoplay muted loop poster controls="{% static 'root/poster-header.jpg' %}" style="max-width: 500px">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 50px">
+            <div class="col col-md-3">
+                <div class="about-video">
+                    <video src="https://storage.googleapis.com/root-tracking-public/about-videos/trace_1.mp4"
+                       autoplay muted loop poster controls="{% static 'root/poster-header.jpg' %}" style="max-width: 500px">
+                    </video>
+                </div>
+            </div>
+            <div class="col fade" style="padding: 50px">
+                <div class="card about-card h-100">
+                  <div class="card-body">
+                      <h4>Root tracking</h4>
+                      <p>Qualitative analysis is done after the initial time-lapse videos have been uploaded.
+
+                          One of the most insightful data points we can collect are the root coordinates by frame.
+
+                          This is done with the help of object detection. We have trained a neural network to recognize the root tip in a single frame.
+
+                          The post-processing pipeline has a number of steps in order sort, analyze, and archive the incoming experiments.
+                      </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="viewport-header" style="height: 100vh" id="contact">
+        <h1 class="h1-header">
+            <div class="about-title">
+                <span>Contact</span>
+            </div>
+            <span>
+                <div class="bounce">
+                    <i class="bi bi-arrow-down-short"></i>
+                </div>
+            </span>
+        </h1>
+    </header>
+    <h1 style="color: white">People</h1>
+    <div class="row people-row">
+        <div class="col fade col-md-auto" style="padding-top: 50px; padding-bottom: 50px">
+            <div class="card about-card h-100" style="border: none; max-width: 300px; width: 200px">
+                <div class="card-header" style="background-color: darkolivegreen; border: none">
+                    <i class="bi bi-person" style="color: white; font-size: 50px"></i>
+                </div>
+                <div class="card-body">
+                    <h4>Isaiah T.</h4>
+                    <p>Research Supervisor</p>
+                    <div class="social-icon">
+                        <a href="#">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                    <div class="social-icon">
+                        <a href="https://www.linkedin.com/in/isaiah-w-taylor">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col fade col-md-auto" style="padding-top: 50px; padding-bottom: 50px">
+            <div class="card about-card h-100" style="border: none; max-width: 300px; width: 200px; height: 500px">
+                <div class="card-header" style="background-color: darkolivegreen; border: none">
+                    <i class="bi bi-person" style="color: white; font-size: 50px"></i>
+                </div>
+                <div class="card-body">
+                    <h4>Anupam M.</h4>
+                    <p>Software Developer</p>
+                    <div class="social-icon">
+                        <a href="https://github.com/aamijar">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                    <div class="social-icon">
+                        <a href="https://www.linkedin.com/in/anupam-mijar-9594581a1">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 style="color: white; margin-top: 50px">Affiliation</h1>
+    <div class="row people-row">
+        <div class="col fade col-md-auto" style="padding-top: 50px; padding-bottom: 50px">
+            <div class="card about-card h-100" style="border: none; width: 450px; background-color: rgb(33, 37, 41)">
+                <div class="card-body">
+                    <span class="text-muted" style="white-space: pre-line">Benfey Lab
+                        Duke University
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(window).scroll(function () {
+            $('.fade').each(function (i) {
+                let bottom_of_object = $(this).position().top + $(this).outerHeight();
+                let bottom_of_window = $(window).scrollTop() + $(window).height();
+                if (bottom_of_window > bottom_of_object) {
+                    $(this).animate({
+                        'opacity': '1'
+                    }, 500);
+                }
+            });
+        });
+    </script>
+{% endblock content %}
