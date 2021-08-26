@@ -2,42 +2,125 @@
 {% load static %}
 
 {% block head-content %}
-    <!--    <link rel="stylesheet" type="text/css" href="{% static 'root/footer.css' %}">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+
+    <!-- datatable requirements -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 {% endblock head-content %}
 
 {% block content %}
-    <h3 style="margin-top: 20px">Internal Page</h3>
-    <p>Welcome, {{user.username}}</p>
-    <a href="/logout">logout</a>
 
-    <br><br>
-    <p style="display: inline-block; margin-right: 10px">Quick Links</p><i class="bi bi-download" aria-hidden="true"></i>
-    <br>
-    <button onclick="download()" class="btn btn-outline-primary">Download Image</button>
-    <br><br>
-    <button onclick="downloadTipCoords()" class="btn btn-outline-primary">Download Json Tip Coordinates</button>
+    <div class="page-header">
+        <div id="left"><h3>Internal Page</h3><p>Welcome, {{user.username}}</p></div>
+        <div id="right"><a class="btn btn-light btn-sm" href="/logout" role="button">Logout</a></div>
+        <div id="center"></div>
+    </div>
 
-    <br><br>
+    <div class="row internal-card-row" style="margin-bottom: 10px; margin-top: 10px">
+        <div class="col-12 col-md-3 col-sm-6">
+            <div class="card internal-card h-100">
+                <div class="card-body">
+                    <h4>New Arrivals
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{unsorted_length}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </h4>
+                </div>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    {% for exp in unsorted %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading-{{exp.name}}">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{exp.name}}" aria-expanded="false" aria-controls="flush-collapse-{{exp.name}}">
+                                  {{exp.name}}
+                              </button>
+                            </h2>
+                            <div id="flush-collapse-{{exp.name}}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{exp.name}}" data-bs-parent="#accordionFlushExample">
+                              <div class="accordion-body">
+                                  {% for e in exp.data %}
+                                    <p>{{e}}</p>
+                                  {% endfor %}
+                              </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 col-sm-6">
+            <div class="card internal-card h-100">
+              <div class="card-body">
+                  <h4>Labeled</h4>
+                  <p>2462.1</p>
+                  <p>2462.2</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 col-sm-6">
+            <div class="card internal-card h-100">
+              <div class="card-body">
+                  <h4>Stabilized</h4>
+                  <p>2461.1</p>
+                  <p>2461.2</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 col-sm-6">
+            <div class="card internal-card h-100">
+              <div class="card-body">
+                  <h4>Complete</h4>
+                  <p>2460.1 ~1 wk ago</p>
+                  <p>2460.2 ~1 wk ago</p>
+              </div>
+            </div>
+        </div>
+    </div>
 
-    <p style="display: inline-block; margin-right: 10px">Download Tip Coordinates</p><i class="bi bi-download" aria-hidden="true"></i>
+<!--    <div style="margin-top: 50px; margin-bottom: 50px">-->
+<!--        <h5 style="display: inline-block; margin-right: 10px; margin-top: 20px">Quick Links</h5><i class="bi bi-file-earmark-arrow-down-fill" aria-hidden="true"></i>-->
+<!--        <div style="margin-top: 10px; margin-bottom: 0.5rem">-->
+<!--            <button onclick="download()" class="btn btn-light">Download Image</button>-->
+<!--            <button onclick="downloadTipCoords()" class="btn btn-light">Download Json Tip Coordinates</button>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <table style="width:50%">
-        <tr>
-            <th>Tip Coordinates</th>
-            <th>Video</th>
-        </tr>
-        {% for url in image_urls %}
-            <tr>
-                <td><a href="#!" onclick="downloadTipCoords(`{{ url.box_num }}`, `{{ url.seed_num }}`)">{{url.box_num}}.{{url.seed_num}}</a></td>
-                <td><a href="#!" onclick="downloadMp4(`{{ url.box_num }}`, 0, this.parentElement)">{{url.box_num}}.{{url.seed_num}} outfile</a><div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
+    <div style="margin-bottom: 50px; margin-top: 50px">
+        <h5 style="display: inline-block; margin-right: 10px; margin-top: 10px; margin-bottom: 20px">All Downloads</h5><i class="bi bi-file-earmark-arrow-down-fill" aria-hidden="true"></i>
+        <table id="download-table" class="table" style="margin-bottom: 10px; margin-top: 10px">
+            <thead>
+                <tr>
+                    <th>Tip Coordinates</th>
+                    <th>Video</th>
+                    <th>Video Frames</th>
+                    <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for url in image_urls %}
+                    <tr>
+                        <td>
+                            <a href="#!" class="btn btn-light btn-sm" role="button" onclick="downloadTipCoords(`{{ url.box_num }}`, `{{ url.seed_num }}`)">{{url.box_num}}</a>
+                        </td>
+                        <td>
+                            <div class="internal-video">
+                                <a href="#!" class="btn btn-light btn-sm" role="button" onclick="downloadMp4(`{{ url.box_num }}`, 0, `progress-bar-{{url.box_num}}.{{url.seed_num}}`, `{{url.url}}`, `mp4`)">{{url.box_num}}.mp4</a>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#!" class="btn btn-light btn-sm" role="button" onclick="downloadZip(`{{ url.box_num }}`, 0, `progress-bar-{{url.box_num}}.{{url.seed_num}}`)">{{url.box_num}}.zip</a>
+                        </td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar" id="progress-bar-{{url.box_num}}.{{url.seed_num}}" role="progressbar" style="display: inline; float: right;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
@@ -67,33 +150,50 @@
                 const url = window.URL.createObjectURL(new Blob([JSON.stringify(response.data)], {type: "application/json"}));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'image.json');
+                link.setAttribute('download', `${box_num}-${seed_num}.json`);
                 document.body.appendChild(link);
                 link.click();
             });
         }
-        function downloadMp4(box_num, seed_num, doc) {
+        function downloadZip(box_num, seed_num, id) {
             axios({
-                url: `https://storage.googleapis.com/root-tracking-public/showcase/${box_num}/stabilize.mp4/outfile.mp4`,
+                url: '/internal/',
+                method: 'POST',
+                responseType: 'json',
+                headers: {'X-CSRFToken': '{{csrf_token}}'},
+                data: {'box_num': String(box_num), 'seed_num': String(seed_num), 'type': 'zip'}
+            }).then((response) => {
+                const url = (response.data['url']);
+                downloadMp4(box_num, seed_num, id, url, 'zip');
+            });
+        }
+        function downloadMp4(box_num, seed_num, id, url, type) {
+            console.log(url);
+            axios({
+                url: url,
                 method: 'GET',
                 responseType: 'blob',
                 headers: {'Content-Disposition': 'attachment'},
                 onDownloadProgress: (progressEvent) => {
                     let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                    doc.getElementsByClassName('progress-bar')[0].setAttribute('aria-valuenow', String(percentCompleted))
-                    doc.getElementsByClassName('progress-bar')[0].setAttribute('style','width:'+Number(percentCompleted)+'%')
+                    document.getElementById(id).setAttribute('aria-valuenow', String(percentCompleted))
+                    document.getElementById(id).setAttribute('style','width:'+Number(percentCompleted)+'%')
                 }
-
             }).then((response) => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'vid.mp4');
+                link.setAttribute('download', `${box_num}.${type}`);
                 document.body.appendChild(link);
                 link.click();
             });
         }
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $('#download-table').DataTable();
+        } );
+    </script>
 
 {% endblock content %}
